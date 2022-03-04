@@ -4,7 +4,49 @@
 {% load smart_settings_tags %}
 
 {% spaceless %}
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <link href="https://fonts.googleapis.com/css?family={{ fontLink }}" rel="stylesheet">
+    <style>
+
+        body {
+			font-family: "{{ fontRaw }}", sans-serif;
+		}
+
+        .navbar-brand{
+            font-family: "{{ fontRaw }}", sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+            font-family: "{{ fontRaw }}", sans-serif;
+        }
+
+        #headerTopMenu {
+            background-color:{{ headerColor }};
+        }
+
+        #accordion-sidebar .panel-heading {
+            background-color:{{ menuColor }};
+        }
+
+        #menu-main {
+            background-color:{{ menuColor }};
+        }
+
+        .navbar-default .navbar-nav>li>a {
+            color: {{fontColor}};
+        }
+
+        .panel-primary>.panel-heading {
+            background-color:{{ panelHeader }};
+        }
+
+        @media (min-width: 768px) {
+            .navbar-brand {
+                text-align: left;
+                width: 1000px;
+            }
+        }
+    </style>
+    <nav id="headerTopMenu" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" type="button">
@@ -13,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url home_view %}">{% smart_setting 'COMMON_PROJECT_TITLE' %}</a>
+                <a class="navbar-brand" href="{% url home_view %}" style="color:{{fontColor}};"><div class="row"> {% if haveLogoimg == True %} <img src="{{logoimg}}" style="margin-left:50px;margin-top: -8px;margin-right: 10px;" width="40" height="40" alt=""> {% endif %} {{logoText}}</div></a>
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">

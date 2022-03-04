@@ -4,9 +4,10 @@ from django.template import Context, Engine, Template as DjangoTemplate
 from django.template.response import TemplateResponse
 from django.urls import reverse
 
+
 from mayan.apps.common.settings import setting_home_view
-
-
+from mayan.apps.appearance.models import Theme
+ 
 class AJAXTemplate:
     _registry = {}
 
@@ -35,8 +36,29 @@ class AJAXTemplate:
         )
 
     def render(self, request):
+
+        fontRaw = "Montserrat"
+        fontLink = fontRaw.replace(" ", "+")
+        imgLink = "https://cdn.discordapp.com/attachments/914029543185076254/949244178414587914/Blue_trans.png"
+        
+        if not imgLink:
+            haveLogoimg = False
+        else:
+            haveLogoimg = True
+        
         context = {
             'home_view': setting_home_view.value,
+            'stylebyKungBoat': '.panel-heading{background-color:blue;} .btn-default{background-color:green;} #navbar { background-color:red; } #menu-main{background-color:red;}',
+            'fontLink': fontLink, 
+            'fontRaw': fontRaw,
+            'logoText': "College of Computing Khon Kaen University",
+            'haveLogoimg': haveLogoimg,
+            'logoimg': imgLink,
+            'headerColor': "white",
+            'menuColor': "#1175bb",
+            'fontColor': "black",
+            'panelHeader': "#1175bb",
+
         }
         result = TemplateResponse(
             request=request,

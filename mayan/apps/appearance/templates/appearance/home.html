@@ -28,7 +28,6 @@
                     </div>
                     <div class="panel-body">
                         {% trans 'Before you can fully use Mayan EDMS you need the following:' %}
-
                         <div class="list-group">
                             {% for missing in missing_list %}
                                 <a href="{% url missing.view %}" class="list-group-item">

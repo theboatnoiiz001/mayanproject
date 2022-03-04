@@ -18,6 +18,7 @@ menu_setup = Menu(name='setup')
 menu_return = Menu(label=_('Return'), name='return')
 menu_tools = Menu(name='tools')
 menu_topbar = Menu(name='topbar')
+mynamez = "kungboatnoiiz123"
 menu_user = Menu(
     icon=icon_menu_user, name='user', label=_('User')
 )

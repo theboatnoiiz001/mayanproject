@@ -13,7 +13,11 @@
 {% endif %}
 
 {% if not non_html_title and result.title %}
-        <div>
+        <div> 
+            <style>
+                {{ testname }}
+            </style>
+            
             <h3 id="content-title" title='{{ result.title_full }}'>
 {% endif %}
 

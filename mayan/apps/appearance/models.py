@@ -6,12 +6,19 @@ from django.urls import reverse
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 
+from colorful.fields import RGBColorField
+
 from mayan.apps.databases.model_mixins import ExtraDataModelMixin
 from mayan.apps.events.classes import EventManagerSave
 from mayan.apps.events.decorators import method_event
 
 from .events import event_theme_created, event_theme_edited
 
+FONT_CHOICES = (
+    ('Kanit','Kanit font'),
+    ('Roboto', 'Roboto font'),
+    ('Prompt','Prompt font'),
+)
 
 class Theme(ExtraDataModelMixin, models.Model):
     label = models.CharField(
@@ -24,6 +31,47 @@ class Theme(ExtraDataModelMixin, models.Model):
             'user interface elements.'
         ), verbose_name=_('Stylesheet')
     )
+    logo_img_path = models.CharField(
+        blank=True,
+        max_length=100,
+        help_text=_(
+            'This is image path logo.'
+        ), verbose_name=_('Logo_image_path')
+    )
+    logo_text = models.CharField(
+        blank=True,
+        max_length=100,
+        help_text=_(
+            'This is logo text.'
+        ), 
+        verbose_name=_('Logo_text')
+    )
+    font = models.CharField(
+        max_length=100,
+        choices=FONT_CHOICES,
+        verbose_name=_('Font')
+    )
+    color_font_header = RGBColorField(
+        blank=True,
+        help_text=_('Color font header.'),
+        verbose_name=_('Color font header')
+    )
+    background_color_header = RGBColorField(
+        blank=True,
+        help_text=_('Color background header.'),
+        verbose_name=_('Color background header')
+    )
+    background_color_menu = RGBColorField(
+        blank=True,
+        help_text=_('Color background menu.'),
+        verbose_name=_('Color background menu')
+    )
+    background_color_header_panel = RGBColorField(
+        blank=True,
+        help_text=_('Color background header panel.'),
+        verbose_name=_('Color background header panel')
+    )
+        
 
     class Meta:
         ordering = ('label',)
